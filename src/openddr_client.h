@@ -43,7 +43,8 @@
                                 "is_tablet",               \
                                 "is_wireless_device",      \
                                 "is_crawler",              \
-                                "is_desktop"               \
+                                "is_desktop",              \
+                                "marketing_name"           \
                               }
 
 
