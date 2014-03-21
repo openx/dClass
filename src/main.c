@@ -1,5 +1,6 @@
 /*
  * Copyright 2012 The Weather Channel
+ * Copyright 2013 Reza Naghibi
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +38,8 @@ int main(int argc,char **args)
     dtree_dt_index *h=&di.dti;
     const dclass_keyvalue *kvd;
     
-    printf("dClass - Device classification (version %s %zubit addressing)\n",dclass_get_version(),DTREE_DT_PTR_SIZE);
+    printf("dClass (version %s %s%zubit addressing %zubyte dt_node)\n",dclass_get_version(),
+        DTREE_DT_PTR_TYPE,DTREE_DT_PTR_SIZE,sizeof(dtree_dt_node));
     
     for(i=1;i<argc;i++)
     {
@@ -87,6 +89,8 @@ int main(int argc,char **args)
     printf("dtree stats: nodes: %zu slabs: %zu mem: %zu bytes strings: %zu(%zu,%zu)\n",
            h->node_count,h->slab_count,h->size,h->dc_count,h->dc_slab_count,h->dc_slab_pos);
     
+    printf("dtree comment: '%s'\n",(h->comment?h->comment:""));
+
     dtree_gettime(&startn);
     
     count=dtree_print(h,&dclass_get_id);
@@ -193,7 +197,7 @@ int main(int argc,char **args)
             }
         }
     }
-    
+
     dclass_free(&di);
     
     return 0;

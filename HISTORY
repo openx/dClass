@@ -1,3 +1,44 @@
+2.2.8
+  -Updated OpenDDR/DeviceMap (1.26)
+
+2.2.7
+  -Updated OpenDDR/DeviceMap (1.25)
+
+2.2.6
+  -Updated OpenDDR/DeviceMap (1.24)
+
+2.2.5
+  -Updated OpenDDR/DeviceMap (1.23) and browser detection
+
+2.2.4
+  -Updated OpenDDR/DeviceMap (1.21)
+  -Java JNI loader changes
+  -Error id cleanup (new optional directive)
+
+2.2.3
+  -Updated OpenDDR/DeviceMap (1.20)
+
+2.2.2
+  -Increased default memory bounds
+  -Stricter parsing
+
+2.2.1
+  -Updated OpenDDR/DeviceMap (1.18)
+  -Makefile cleanup
+
+2.2.0
+ -Added Java support via JNI
+ -Expanded regex support
+ -Added pattern ranking
+ -Added directional chaining
+ -Added index comments
+
+2.0.15 
+ -Updated OpenDDR/DeviceMap (1.16)
+
+2.0.14 
+ -Updated OpenDDR/DeviceMap (1.15)
+
 2.0.13
  -Updated support for OS X
  -Updated OpenDDR (1.14)
@@ -48,4 +89,4 @@
  -OpenDDR support
 
 1.4
- -Initial release
+ -Initial release (http://www.rezsoft.org/device_detection/)

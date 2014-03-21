@@ -1,5 +1,6 @@
-/*
+/* 
  * Copyright 2012 The Weather Channel
+ * Copyright 2013 Reza Naghibi
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,6 +59,8 @@ static const char *ngx_dclass_key_array[] =                \
                                 "ajax_support_javascript", \
                                 "is_tablet",               \
                                 "is_wireless_device",      \
+                                "is_desktop",              \
+                                "is_crawler",              \
                                 "browser",                 \
                                 "version",                 \
                                 "os"                       \

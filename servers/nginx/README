@@ -1,7 +1,7 @@
-Tested with nginx 1.0.2 and 1.0.15
+Tested with nginx 1.0.2, 1.0.15, and 1.2.8
 
 Add the following param to your configure:
- --add-module=/some/path/dClass/src
+ --add-module=/some/path/dClass/servers/src
 
 Enable or disable the lookup:
     dclass on;
@@ -27,6 +27,8 @@ The following variables are supported:
     $dclass_ajax_support_javascript
     $dclass_is_tablet
     $dclass_is_wireless_device
+    $dclass_is_desktop
+    $dclass_is_crawler
   Browser
     $dclass_browser
     $dclass_version

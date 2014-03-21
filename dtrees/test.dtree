@@ -1,53 +1,9 @@
-#Test dtree
+# Test dtree
 
-#$regex - regular expression tree indexing and searching
-#$dups - allow pattern duplicates
+#$regex
+#$dups
 
-
-# These IDs (#!) have the highest index order and will be returned as such.
-# Also used for string caching.
-
-#!unknown,bat,mat,vat
-
-
-#FORMAT:
-#pattern;id;TYPE;parent;key1=value1,key2=value2
-
-# pattern - Pattern to match. Supports . (wildcard), ? (optional) and [] (set).
-#           Patterns are searched from left to right. Patterns must begin and
-#           end on non alphanumeric boundaries.
-
-# id - Unique id for pattern. Patterns with matching ids will share key values.
-#      If referenced as parent, only 1 pattern of an id set needs to match.
-
-# TYPE - S,B,C,W,N
-#    S - Strong pattern. If found, pattern is immediately returned.
-#    B - Base pattern. This pattern is only used as a parent dependency. May
-#        itself have a parent dependency. Dependencies must be matched in
-#        search order.
-#    C - Chain pattern. If parent dependencies have been satisfied and this
-#        pattern is found, it is immediately returned.
-#    W - Weak pattern. This pattern is only returned in the absence of S and C
-#        patterns. Entire string must be searched. Index order is used to
-#        break ties.
-#    N - None pattern. This pattern is only returned in the absence of S, C,
-#        and W patterns. Entire string must be searched. Index order is used to
-#        break ties.
-
-# parent - id of a base (B) pattern which is a dependency of this pattern.
-#          Parents must be found in search order.
-
-# key=values - Key value pairs which are returned when a pattern is matched.
-#              (Note that a uniform keyset (empty keyset is allowed) gives the
-#              best runtime performance since each pattern will point to the
-#              same keyset memory location)
-
-
-#OPENDDR
-# All OpenDDR builders are implemented as strong patterns with the exception of
-#SimpleDeviceBuilder which is implemented as weak patterns and
-#TwoStepDeviceBuilder which is implemented as a base/chain pattern.
-
+#!unknown,bat,mat,vat,wtest5b
 
 abc123;abc;S;;key1="value,1",key 2=value 2
 xy[zc]?1234?;xyz;S;;
@@ -79,3 +35,48 @@ test5;test5;N;;
 test8 test9;test89;C;test7;
 test8;test8;C;test7;
 test7;test7;B;;
+
+(set\.\.?test);settest;S;;period=true
+(set.?test);settest2;S;;period=false
+set\\test;settest3;S;;slash=true
+
+(group1\)?) (group(2)?) (t[e3]?st\? )?(group3);g123;;
+
+   "pattern 123  \"  456 "   ;  p123456s  ; S ;;  var1  = "value1,fake=part of var1", " value 2 "  = two
+   "pattern 123  456 "   ;  p123456n  ; S ;;  var1  = val1  ,   var2=two
+
+^ptest;ptest1;S;;pos=1
+ptest;ptest2;S:2;;pos=2
+ptest;ptest3;S:3;;pos=3
+ptest$;pteste;S;;pos=end
+
+^fullstring$;fulls;S;;pos=full,space=false
+fullstring;fullsa;W;;pos=any,space=false
+
+^full;sfullb;B;;
+string$;sfulls;C;sfullb:-1;pos=full,space=true
+string$;sfulls1;C;sfullb:-2;pos=full,space=2
+string$;sfulls2;C;sfullb:-3;pos=full,space=3
+
+wtest       ;wtest;     W;      ;weak=blank
+wtest1      ;wtest1;    W1;     ;weak=1
+wtest5b     ;wtest5b;   W5;     ;weak=5,beta=true
+wtest5      ;wtest5;    W5;     ;weak=5
+wtest25     ;wtest25;   W25;    ;weak=25
+wtest100    ;wtest100;  W100;   ;weak=100
+
+this is the  ;thisis ;B  ;          ;
+start        ;thiss  ;C10;thisis:-3 ;this is=start
+end$         ;thise  ;C11;thisis:-4 ;this is=end,end=""
+middle       ;middle ;W12;          ;middle=weak11
+
+aaa;aaa;B;;
+bbb;bbbb;C120;ccc:1;b=before c
+bbb;bbbbm;C50;ccc:10;b=before c,multi=true
+bbb;bbba;C130;ccc:-1;b=after c
+bbb;bbbam;C30;ccc:-10;b=after c,multi=true
+ccc;ccc;B;;
+
+del,del=del;delt;S;;var=value1;value2,v2=two
+
+"quote\";\"quote";quote;S;;test="\"value1\",\"value2\"",second="\""
