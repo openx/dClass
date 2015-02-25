@@ -1,3 +1,15 @@
+2.3.2
+  -Updated DeviceMap (1.0.2), more tests
+
+2.3.1
+  -Updated DeviceMap (1.0.1)
+
+2.2.10
+  -cleanups, varnish4, pattern patches, tested with nginx 1.6.0
+
+2.2.9
+  -Updated OpenDDR/DeviceMap (1.27)
+
 2.2.8
   -Updated OpenDDR/DeviceMap (1.26)
 
