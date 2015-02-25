@@ -1,14 +1,14 @@
-Tested with nginx 1.0.2, 1.0.15, and 1.2.8
+Tested with nginx 1.0.2, 1.0.15, 1.2.8 and 1.6.0
 
 Add the following param to your configure:
- --add-module=/some/path/dClass/servers/src
+    --add-module=/some/path/dClass/servers/src
 
 Enable or disable the lookup:
     dclass on;
     dclass off;
 
 Define one or more indexes (upto 4):
-    dclass_def /some/path/dClass/dtrees/openddr.dtree;
+    dclass_def /some/path/dClass/dtrees/devicemap.dtree;
     dclass_def1 /some/path/dClass/dtrees/browser.dtree;
 
 Define the header field (default: User-Agent):
@@ -16,7 +16,7 @@ Define the header field (default: User-Agent):
 
 The following variables are supported:
     $dclass_id
-  OpenDDR:
+  DeviceMap:
     $dclass_vendor
     $dclass_model
     $dclass_parentId
