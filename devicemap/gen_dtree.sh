@@ -1,6 +1,13 @@
 #!/bin/bash
 
-DEVICEMAP_RESOURCE_PATH=/some/path/devicemap/latest/devicedata
+if test ! -d DeviceMap-Resource; then
+  svn co https://svn.apache.org/repos/asf/devicemap/trunk/data/device-data/src/main/resources/devicedata DeviceMap-Resource
+fi
+(cd DeviceMap-Resource; svn update)
+
+DEVICEMAP_RESOURCE_PATH=DeviceMap-Resource
+
+
 DCLASS_BIN=../src/dclass_client
 
 if [ ! -d "$DEVICEMAP_RESOURCE_PATH" ]
@@ -17,5 +24,5 @@ fi
 
 cp BuilderDataSourcePatch.xml DeviceDataSourcePatch.xml "$DEVICEMAP_RESOURCE_PATH"
 
-$DCLASS_BIN -d "$DEVICEMAP_RESOURCE_PATH" -o devicemap.dtree
+$DCLASS_BIN -d "$DEVICEMAP_RESOURCE_PATH" -o ../dtrees/devicemap.dtree
 
