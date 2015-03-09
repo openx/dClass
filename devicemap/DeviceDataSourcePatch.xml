@@ -31,5 +31,17 @@
         <property name="is_crawler" value="true"/>
         <property name="is_wireless_device" value="false"/>
       </device>
+      <device id="desktopDevice" parentId="generic-">
+        <property name="vendor" value="desktop"/>
+        <property name="model" value="browser"/>
+      </device>
+      <device id="genericPhone" parentId="generic-">
+        <property name="vendor" value="generic"/>
+        <property name="model" value="phone"/>
+      </device>
+      <device id="genericTouchPhone" parentId="generic-">
+        <property name="vendor" value="generic"/>
+        <property name="model" value="touch phone"/>
+      </device>
   </Devices>
 </ODDR>
