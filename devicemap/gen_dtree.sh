@@ -1,7 +1,8 @@
 #!/bin/bash
 
 if test ! -d DeviceMap-Resource; then
-  svn co https://svn.apache.org/repos/asf/devicemap/trunk/data/device-data/src/main/resources/devicedata DeviceMap-Resource
+  #svn co https://svn.apache.org/repos/asf/devicemap/trunk/data/device-data/src/main/resources/devicedata DeviceMap-Resource
+  svn checkout http://svn.apache.org/repos/asf/devicemap/trunk/data/1.0/device-data/src/main/resources/devicedata DeviceMap-Resource
 fi
 (cd DeviceMap-Resource; svn update)
 
